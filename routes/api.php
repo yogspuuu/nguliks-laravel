@@ -22,21 +22,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group('product', function() {
-    Route::post('{product_id}', [ProductController::class, 'create']);
+Route::group(['prefix' => 'product'], function() {
+    Route::post('create', [ProductController::class, 'create']);
     Route::get('{product_id}', [ProductController::class, 'read']);
     Route::put('{product_id}', [ProductController::class, 'update']);
     Route::delete('{product_id}', [Product::class, 'delete']);
 });
 
-Route::group('category', function() {
+Route::group(['prefix' => 'category'], function() {
     Route::post('{category_id}', [CategoryController::class, 'create']);
     Route::get('{category_id}', [CategoryController::class, 'read']);
     Route::put('{category_id}', [CategoryController::class, 'update']);
     Route::delete('{category_id}', [CategoryController::class, 'delete']);
 });
 
-Route::group('image', function() {
+Route::group(['prefix' => 'image'], function() {
     Route::post('{image_id}', [ImageController::class, 'create']);
     Route::get('{image_id}', [ImageController::class, 'read']);
     Route::put('{image_id}', [ImageController::class, 'update']);

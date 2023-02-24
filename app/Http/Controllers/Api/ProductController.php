@@ -39,7 +39,7 @@ class ProductController extends Controller
         );
     }
 
-    public function detail(Product $product)
+    public function detail(Product $product): JsonResponse
     {
         return $this->productResponse(
             product: $product,
@@ -48,7 +48,7 @@ class ProductController extends Controller
         );
     }
 
-    public function update(ProductUpdateRequest $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product): JsonResponse
     {
         $product->update($request->all());
 
@@ -59,7 +59,7 @@ class ProductController extends Controller
         );
     }
 
-    public function delete(Product $product)
+    public function delete(Product $product): JsonResponse
     {
         $product->delete();
 

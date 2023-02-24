@@ -10,7 +10,8 @@ class ImageCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            
+            'images' => $this->collection,
+            'images_count' => $this->count()
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Category\CategoryCollection;
 use App\Http\Resources\Category\CategoryResource;
 use App\Http\Resources\Image\ImageResource;
 use App\Http\Resources\Product\ProductCollection;
@@ -40,7 +41,11 @@ class Controller extends BaseController
             return $this->failed();
         }
 
-        $data = new CategoryResource($category);
+        if ($category instanceof Category) {
+            $data = new CategoryResource($category);
+        } else {
+            $data = new CategoryCollection($category);
+        }
 
         return $this->success(data: $data, message: $message, pagination: $pagination);
     }

@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\ProductController;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,23 +21,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'product'], function() {
+Route::group(['prefix' => 'product'], function () {
     Route::post('create', [ProductController::class, 'create']);
-    Route::get('{product_id}', [ProductController::class, 'read']);
-    Route::put('{product_id}', [ProductController::class, 'update']);
-    Route::delete('{product_id}', [Product::class, 'delete']);
+    Route::get('list', [ProductController::class, 'list']);
+    Route::get('detail/{product}', [ProductController::class, 'detail']);
+    Route::put('update/{product}', [ProductController::class, 'update']);
+    Route::delete('delete/{product}', [ProductController::class, 'delete']);
 });
 
-Route::group(['prefix' => 'category'], function() {
-    Route::post('{category_id}', [CategoryController::class, 'create']);
-    Route::get('{category_id}', [CategoryController::class, 'read']);
-    Route::put('{category_id}', [CategoryController::class, 'update']);
-    Route::delete('{category_id}', [CategoryController::class, 'delete']);
+Route::group(['prefix' => 'category'], function () {
+    Route::post('create', [CategoryController::class, 'create']);
+    Route::get('list', [CategoryController::class, 'list']);
+    Route::get('detail/{category}', [CategoryController::class, 'detail']);
+    Route::put('update/{category}', [CategoryController::class, 'update']);
+    Route::delete('delete/{category}', [CategoryController::class, 'delete']);
 });
 
-Route::group(['prefix' => 'image'], function() {
-    Route::post('{image_id}', [ImageController::class, 'create']);
-    Route::get('{image_id}', [ImageController::class, 'read']);
-    Route::put('{image_id}', [ImageController::class, 'update']);
-    Route::delete('{image_id}', [ImageController::class, 'delete']);
+Route::group(['prefix' => 'image'], function () {
+    Route::post('create', [ImageController::class, 'create']);
+    Route::get('list', [ImageController::class, 'list']);
+    Route::get('detail/{image}', [ImageController::class, 'detail']);
+    Route::put('update/{image}', [ImageController::class, 'update']);
+    Route::delete('delete/{image}', [ImageController::class, 'delete']);
 });

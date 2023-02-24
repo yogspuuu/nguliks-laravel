@@ -16,6 +16,7 @@ class ProductUpdateRequest extends FormRequest
         return [
             'name' => 'sometimes|string',
             'description' => 'sometimes|string',
+            'category_id' => 'sometimes|integer',
             'enable' => 'sometimes|boolean',
         ];
     }

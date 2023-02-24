@@ -3,7 +3,6 @@
 namespace App\Models\Product;
 
 use App\Models\Category\Category;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,10 +18,10 @@ class Product extends Model
         'enable'
     ];
 
-    public function category(): Builder
+    public function category(): Category
     {
         $productCategory = ProductCategory::where('product_id', $this->id)->first();
 
-        return Category::where('id', $productCategory->category_id);
+        return Category::where('id', $productCategory->category_id)->first();
     }
 }

@@ -9,10 +9,12 @@ class ImageService
 {
     public function saveImage(Request $request, Image $image = null)
     {
+        if ($image instanceof Image) {
+            $imagePath = $image->file;
+        }
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('image', 'public');
-        } else {
-            $imagePath = $image->file;
         }
 
         return $imagePath;

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Image;
+use App\Models\Image\Image;
 use Illuminate\Http\Request;
 
 class ImageService

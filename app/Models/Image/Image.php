@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Image;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Image extends Model
 {
     use HasFactory;
 
-    protected $table = 'category';
+    protected $table = 'image';
 
     protected $fillable = [
         'name',
-        'enable'
+        'file',
+        'enable',
     ];
 }

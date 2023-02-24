@@ -16,6 +16,7 @@ class ProductCreateRequest extends FormRequest
         return [
             'name' => 'required|string',
             'description' => 'required|string',
+            'category_id' => 'required|integer',
             'enable' => 'required|boolean',
         ];
     }

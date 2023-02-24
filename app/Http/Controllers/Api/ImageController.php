@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Image\ImageCreateRequest;
 use App\Http\Requests\Image\ImageUpdateRequest;
-use App\Models\Image;
+use App\Models\Image\Image;
 use App\Services\ImageService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class ImageController extends Controller
 
     public function list(): JsonResponse
     {
-        $image = $this->image->get();
+        $image = $this->image->where('enable', 1)->get();
 
         return $this->imageResponse(
             image: $image,

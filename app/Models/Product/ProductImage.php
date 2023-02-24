@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class ProductImage extends Model
 {
     use HasFactory;
 
-    protected $table = 'product';
+    protected $table = 'product_image';
 
     protected $fillable = [
-        'name',
-        'description',
-        'enable'
+        'product_id',
+        'image_id'
     ];
 }

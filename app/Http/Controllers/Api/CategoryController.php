@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryCreateRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
-use App\Models\Category;
+use App\Models\Category\Category;
 use Illuminate\Http\JsonResponse;
 
 class CategoryController extends Controller
@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
     public function list(): JsonResponse
     {
-        $category = $this->category->get();
+        $category = $this->category->where('enable', 1)->get();
 
         return $this->categoryResponse(
             category: $category,

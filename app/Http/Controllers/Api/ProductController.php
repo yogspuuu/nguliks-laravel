@@ -5,21 +5,29 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductCreateRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
-use App\Models\Product;
+use App\Models\Product\Product;
+use App\Models\Product\ProductCategory;
 use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
     protected $product;
+    protected $productCategory;
 
-    public function __construct(Product $product)
+    public function __construct(Product $product, ProductCategory $productCategory)
     {
         $this->product = $product;
+        $this->productCategory = $productCategory;
     }
 
     public function create(ProductCreateRequest $request): JsonResponse
     {
         $product = $this->product->create($request->all());
+
+        $this->productCategory->create([
+            'product_id' => $product->id,
+            'category_id' => $request->category_id
+        ]);
 
         return $this->productResponse(
             product: $product,
@@ -30,7 +38,7 @@ class ProductController extends Controller
 
     public function list(): JsonResponse
     {
-        $product = $this->product->get();
+        $product = $this->product->where('enable', 1)->get();
 
         return $this->productResponse(
             product: $product,
@@ -51,6 +59,10 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request, Product $product): JsonResponse
     {
         $product->update($request->all());
+
+        $this->productCategory->where('product_id', $product->id)->update([
+            'category_id' => $request->category_id
+        ]);
 
         return $this->productResponse(
             product: $product,

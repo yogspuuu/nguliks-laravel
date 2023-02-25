@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
     public function list(): JsonResponse
     {
-        $category = $this->category->where('enable', 1)->get();
+        $category = $this->category->where('enable', 1)->paginate(10);
 
         return $this->categoryResponse(
             category: $category,

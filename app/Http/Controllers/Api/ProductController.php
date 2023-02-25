@@ -39,7 +39,7 @@ class ProductController extends Controller
 
     public function list(): JsonResponse
     {
-        $product = $this->product->where('enable', 1)->get();
+        $product = $this->product->where('enable', 1)->paginate(10);
 
         return $this->productResponse(
             product: $product,

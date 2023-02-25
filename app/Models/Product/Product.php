@@ -5,7 +5,6 @@ namespace App\Models\Product;
 use App\Http\Requests\Product\ProductCreateRequest;
 use App\Models\Category\Category;
 use App\Models\Image\Image;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -29,11 +28,11 @@ class Product extends Model
         return Category::where('id', $productCategory->category_id)->first();
     }
 
-    public function image(): Collection
+    public function image(): Image
     {
         $productImage = ProductImage::where('product_id', $this->id)->first();
 
-        return Image::where('id', $productImage->image_id)->get();
+        return Image::where('id', $productImage->image_id)->first();
     }
 
     public function saveCategory(Product $product, ProductCreateRequest $request): void

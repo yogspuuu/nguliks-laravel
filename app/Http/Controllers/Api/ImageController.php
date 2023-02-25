@@ -36,7 +36,7 @@ class ImageController extends Controller
 
     public function list(): JsonResponse
     {
-        $image = $this->image->where('enable', 1)->get();
+        $image = $this->image->where('enable', 1)->paginate(10);
 
         return $this->imageResponse(
             image: $image,

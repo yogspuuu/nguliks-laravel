@@ -21,7 +21,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    protected function productResponse($product, bool $status, string $message = null, object|array $pagination = null): JsonResponse
+    protected function productResponse($product, bool $status, string $message = null): JsonResponse
     {
         if (!$status) {
             return $this->failed();
@@ -29,14 +29,16 @@ class Controller extends BaseController
 
         if ($product instanceof Product) {
             $data = new ProductResource($product);
+            $pagination = null;
         } else {
             $data = new ProductCollection($product);
+            $pagination = $this->paginateData($product);
         }
 
         return $this->success(data: $data, message: $message, pagination: $pagination);
     }
 
-    protected function categoryResponse($category, bool $status, string $message = null, object|array $pagination = null): JsonResponse
+    protected function categoryResponse($category, bool $status, string $message = null): JsonResponse
     {
         if (!$status) {
             return $this->failed();
@@ -44,14 +46,16 @@ class Controller extends BaseController
 
         if ($category instanceof Category) {
             $data = new CategoryResource($category);
+            $pagination = null;
         } else {
             $data = new CategoryCollection($category);
+            $pagination = $this->paginateData($category);
         }
-
+    
         return $this->success(data: $data, message: $message, pagination: $pagination);
     }
 
-    protected function imageResponse($image, bool $status, string $message = null, object|array $pagination = null): JsonResponse
+    protected function imageResponse($image, bool $status, string $message = null): JsonResponse
     {
         if (!$status) {
             return $this->failed();
@@ -59,8 +63,10 @@ class Controller extends BaseController
 
         if ($image instanceof Image) {
             $data = new ImageResource($image);
+            $pagination = null;
         } else {
             $data = new ImageCollection($image);
+            $pagination = $this->paginateData($image);
         }
 
         return $this->success(data: $data, message: $message, pagination: $pagination);
@@ -86,5 +92,14 @@ class Controller extends BaseController
         ];
 
         return response()->json($responses, Response::HTTP_BAD_REQUEST);
+    }
+
+    private function paginateData($data) {
+        $pagination['current_page'] = $data->toArray()['current_page'];
+        $pagination['per_page'] = $data->toArray()['per_page'];
+        $pagination['total_page'] = $data->toArray()['last_page'];
+        $pagination['total_data'] = $data->toArray()['total'];
+
+        return $pagination;
     }
 }

@@ -51,7 +51,7 @@ class Controller extends BaseController
             $data = new CategoryCollection($category);
             $pagination = $this->paginateData($category);
         }
-    
+
         return $this->success(data: $data, message: $message, pagination: $pagination);
     }
 
@@ -94,7 +94,8 @@ class Controller extends BaseController
         return response()->json($responses, Response::HTTP_BAD_REQUEST);
     }
 
-    private function paginateData($data) {
+    private function paginateData($data): array
+    {
         $pagination['current_page'] = $data->toArray()['current_page'];
         $pagination['per_page'] = $data->toArray()['per_page'];
         $pagination['total_page'] = $data->toArray()['last_page'];

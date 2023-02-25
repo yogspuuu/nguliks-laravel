@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "1b48102d-3c19-4e40-9a75-835cfd85a01f",
+		"name": "Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12425125"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "chair",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "beautiful chair!",
+									"type": "text"
+								},
+								{
+									"key": "image_id",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "enable",
+									"value": "1",
+									"description": "0 = false\n1 = true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/product/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/product/list?page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/product/detail/:product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"detail",
+								":product"
+							],
+							"variable": [
+								{
+									"key": "product",
+									"value": "1",
+									"description": "Product ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/product/update/:product?name=knife&description=beautiful knife!&category_id=1&image_id=13&enable=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"update",
+								":product"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "knife"
+								},
+								{
+									"key": "description",
+									"value": "beautiful knife!"
+								},
+								{
+									"key": "category_id",
+									"value": "1"
+								},
+								{
+									"key": "image_id",
+									"value": "13"
+								},
+								{
+									"key": "enable",
+									"value": "1",
+									"description": "0 = false\n1 = true"
+								}
+							],
+							"variable": [
+								{
+									"key": "product",
+									"value": "1",
+									"description": "Product ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/product/delete/:product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"delete",
+								":product"
+							],
+							"variable": [
+								{
+									"key": "product",
+									"value": "4",
+									"description": "Product ID"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "dapoer",
+									"type": "text"
+								},
+								{
+									"key": "enable",
+									"value": "1",
+									"description": "0 = false\n1 = true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/category/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/category/list?page=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/category/detail/:category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"detail",
+								":category"
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": "5",
+									"description": "Category ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/category/update/:category?name=wewew&enable=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"update",
+								":category"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "wewew"
+								},
+								{
+									"key": "enable",
+									"value": "0"
+								}
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": "5",
+									"description": "Category ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/category/delete/:category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"delete",
+								":category"
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": "5",
+									"description": "Category ID"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "knife",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/yogs/Pictures/Screenshots/Screenshot from 2023-02-22 13-17-02.png"
+								},
+								{
+									"key": "enable",
+									"value": "1",
+									"description": "0 = false\n1 = true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/image/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/image/list?page=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/image/detail/:image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"detail",
+								":image"
+							],
+							"variable": [
+								{
+									"key": "image",
+									"value": "5",
+									"description": "Image ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "spoon",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/yogs/Pictures/Screenshots/Screenshot from 2023-02-22 13-17-02.png"
+								},
+								{
+									"key": "enable",
+									"value": "1",
+									"description": "0 = false\n1 = true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/image/update/:image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"update",
+								":image"
+							],
+							"variable": [
+								{
+									"key": "image",
+									"value": "3",
+									"description": "Image ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/image/delete/:image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"delete",
+								":image"
+							],
+							"variable": [
+								{
+									"key": "image",
+									"value": "4",
+									"description": "Image ID"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -17,6 +17,7 @@ class ProductCreateRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'category_id' => 'required|integer',
+            'image_id' => 'required|integer',
             'enable' => 'required|boolean',
         ];
     }

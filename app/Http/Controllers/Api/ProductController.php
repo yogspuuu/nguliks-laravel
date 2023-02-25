@@ -7,27 +7,28 @@ use App\Http\Requests\Product\ProductCreateRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
 use App\Models\Product\Product;
 use App\Models\Product\ProductCategory;
+use App\Models\Product\ProductImage;
 use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
     protected $product;
     protected $productCategory;
+    protected $productImage;
 
-    public function __construct(Product $product, ProductCategory $productCategory)
+    public function __construct(Product $product, ProductCategory $productCategory, ProductImage $productImage)
     {
         $this->product = $product;
         $this->productCategory = $productCategory;
+        $this->productImage = $productImage;
     }
 
     public function create(ProductCreateRequest $request): JsonResponse
     {
         $product = $this->product->create($request->all());
 
-        $this->productCategory->create([
-            'product_id' => $product->id,
-            'category_id' => $request->category_id
-        ]);
+        $this->product->saveCategory($product, $request);
+        $this->product->saveImage($product, $request);
 
         return $this->productResponse(
             product: $product,
@@ -60,9 +61,8 @@ class ProductController extends Controller
     {
         $product->update($request->all());
 
-        $this->productCategory->where('product_id', $product->id)->update([
-            'category_id' => $request->category_id
-        ]);
+        $this->product->updateCategory($product, $request);
+        $this->product->updateImage($product, $request);
 
         return $this->productResponse(
             product: $product,

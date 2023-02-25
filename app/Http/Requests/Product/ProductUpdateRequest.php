@@ -17,6 +17,7 @@ class ProductUpdateRequest extends FormRequest
             'name' => 'sometimes|string',
             'description' => 'sometimes|string',
             'category_id' => 'sometimes|integer',
+            'image_id' => 'sometimes|integer',
             'enable' => 'sometimes|boolean',
         ];
     }
